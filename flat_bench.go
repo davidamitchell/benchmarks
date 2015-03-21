@@ -78,6 +78,7 @@ func benchmark(t *testing.B) {
 
 func benchmarkPrepared(t *testing.B) {
 	t.StopTimer()
+
 	//db, err := sql.Open("postgres", "user=root dbname=service_financial_development sslmode=require host=localhost")
 	db, err := sql.Open("pgx", "postgres://root:root@localhost:5432/service_financial_development")
 	if err != nil {

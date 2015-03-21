@@ -15,24 +15,18 @@ var conn *pgx.Conn
 var db *sql.DB
 
 func main() {
-	SetUp()
-	br := testing.Benchmark(benchmark)
-
-	nanoseconds := float64(br.T.Nanoseconds()) / float64(br.N)
-	milliseconds := nanoseconds / 1000000.0
-
-	fmt.Printf("%13.2f ns/op | %13.10f ms/op | %d Iterations\n", nanoseconds, milliseconds, br.N)
-	fmt.Println(br)
-
-	fmt.Println("\n\n===================\n\n")
+	// SetUp()
+	// br := testing.Benchmark(benchmark)
+	//
+	// nanoseconds := float64(br.T.Nanoseconds()) / float64(br.N)
+	// milliseconds := nanoseconds / 1000000.0
+	//
+	// fmt.Printf("%13.2f ns/op | %13.10f ms/op | %d Iterations\n", nanoseconds, milliseconds, br.N)
+	// fmt.Println(br)
+	//
+	// fmt.Println("\n\n===================\n\n")
 	SetUpPg()
-	br = testing.Benchmark(benchmark_pg)
-
-	nanoseconds = float64(br.T.Nanoseconds()) / float64(br.N)
-	milliseconds = nanoseconds / 1000000.0
-
-	fmt.Printf("%13.2f ns/op | %13.10f ms/op | %d Iterations\n", nanoseconds, milliseconds, br.N)
-	fmt.Println(br)
+	testing.Benchmark(benchmark_pg)
 }
 
 func benchmark(t *testing.B) {
@@ -60,8 +54,15 @@ func benchmark_pg(t *testing.B) {
 }
 
 func Results(elapsed time.Duration, n int) {
+
 	each := elapsed / time.Duration(n)
-	fmt.Printf(" %13.10s per query   | %9d iterations    | %8s total time\n", each, n, elapsed)
+	fmt.Printf(" %13.5f ms per query   | %9d iterations    | %8.5f ms total time\n", milliseconds(each), n, milliseconds(elapsed))
+}
+
+func milliseconds(dur time.Duration) float64 {
+	nanoseconds := float64(dur.Nanoseconds())
+	milliseconds := nanoseconds / 1000000.0
+	return milliseconds
 }
 
 func SetUp() {
