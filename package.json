@@ -1,0 +1,21 @@
+{
+  "name": "benchmarks",
+  "description": "benchmarks",
+  "version": "0.0.0",
+  "homepage": "https://github.com/davidamitchell/benchmarks",
+  "bugs": "https://github.com/davidamitchell/benchmarks/issues",
+  "license": "MIT",
+  "main": "node/main.js",
+  "author": {
+    "name": "David Mitchell"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidamitchell/benchmarks"
+  },
+  "keywords": [],
+  "dependencies": {
+    "pg": "^4.3.0"
+  },
+  "devDependencies": {}
+}

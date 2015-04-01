@@ -1,14 +1,12 @@
 #!/usr/bin/env ruby
-
 require 'pg'
 require "benchmark"
 
+conn = PG.connect( dbname: 'benchmarking' )
 
-# Output a table of current connections to the DB
 3.times do |i|
-  conn = PG.connect( dbname: 'benchmarking' )
 
-  n = 20000
+  n = 1
 
   beginning_time = Time.now
   time = Benchmark.measure do
